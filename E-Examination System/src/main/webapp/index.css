@@ -1,0 +1,66 @@
+body {
+	padding-top: 3rem;
+	padding-bottom: 3rem;
+	color: #020202;
+	font-family: 'Poppins', sans-serif;
+	overflow-x: hidden;
+}
+
+nav {
+	font-family: sans-serif;
+}
+
+.navbar-brand {
+	font-size: 20px;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.carousel {
+	margin-bottom: 0;
+}
+
+.carousel-caption {
+	bottom: 3rem;
+	z-index: 10;
+	color:black;
+}
+
+.carousel-item {
+	height: 530px;
+}
+.info{
+	color: black;
+}
+.carousel-item>img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	min-width: 100%;
+	height: 30rem;
+}
+
+.padding {
+	/*padding-bottom: 2rem;*/
+}
+
+.bd-placeholder-img {
+	font-size: 1.125rem;
+	text-anchor: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+@media ( min-width : 768px) {
+	.bd-placeholder-img-lg {
+		font-size: 3.5rem;
+	}
+}
+footer {
+  text-align: right;
+  padding: 0.5px;
+  background-color: black;
+  color: white;
+}
+
