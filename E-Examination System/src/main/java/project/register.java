@@ -37,11 +37,14 @@ public class register extends HttpServlet {
             String education = request.getParameter("education");
             String username = request.getParameter("uname");
             String password = request.getParameter("upass");
- 
+            String confirmpassword = request.getParameter("confmpass");
+            
+           
+            
             String url = "jdbc:mysql://localhost:3306/ejproj";
             String dbusername = "root";
             String dbpassword = "Pradip@5656";
-            String query = "insert into student(studentName,email,address,education,uname,upass) values (?,?,?,?,?,?)"; 
+            String query = "insert into student(studentName,email,address,education,uname,upass,confmpass) values (?,?,?,?,?,?,?)"; 
            
             Connection con = null;
             PreparedStatement preparedStatement= null;
@@ -59,12 +62,16 @@ public class register extends HttpServlet {
                 preparedStatement.setString(4, education);
                 preparedStatement.setString(5, username);
                 preparedStatement.setString(6, password);
+                preparedStatement.setString(7, confirmpassword);
                 int i= preparedStatement.executeUpdate();
            
                 if (i!=0) {
                     HttpSession hs = request.getSession();
                     hs.setAttribute("name", name);
-                    response.sendRedirect("successRegister.jsp");
+                    
+                    response.sendRedirect("register.jsp");
+                   
+                     hs.setAttribute("ermsg", "You Have Registered Successfully");
                          
                     } else{
                     

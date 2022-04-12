@@ -1,7 +1,3 @@
-<%-- 
-    Document   : register
-    Created on : 04 Apr, 2022, 5:08:47 PM
-    Author     : Swarali kulkarni --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -22,20 +18,35 @@
 
 <link rel="stylesheet" type="text/css" href="register.css">
 </head>
+<script type="text/javascript">
+    function Validate() {
+        var password = document.getElementById("inputPassword").value;
+        var confirmPassword = document.getElementById("confrmpassword").value;
+        if (password != confirmPassword) {
+            alert("Passwords do not match.");
+            return false;
+        }
+        return true;
+    }
+</script>
+
 <body>
 	<div id="logreg-forms">
 	<div class="bg-img">
-		<form class="form-signin" action="register">
+		<form  onSubmit="if(!confirm('Is the form filled out correctly?')){return false;}"class="form-signin" action="register">
 			<h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Student
 				Sign Up</h1>
 			<hr>
  <input type="text" id="inputEmail" class="form-control" placeholder="Student Name" required="" autofocus="" name="name" /></br>
             <input type="text" id="inputEmail" class="form-control" placeholder="Username" required="" autofocus="" name="uname" /></br>
             <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="" name="upass" /></br>
+            <input type="password" id="confrmpassword" class="form-control" placeholder="Confirm Password" required="" name="confmpass" /></br>
              <input type="email" id="inputEmail" class="form-control" placeholder="Email" required="" autofocus="" name="email" /></br>
             <input type="text" id="inputEmail" class="form-control" placeholder="City" required="" autofocus="" name="address" /></br>
             <input type="text" id="inputEmail" class="form-control" placeholder="Education" required="" autofocus="" name="education" />
-			<input class="btn btn-success btn-block" type="submit" value="Register" style="color:white;"><br/>
+            
+            
+			<input class="btn btn-success btn-block" type="submit" onclick="return Validate()" value="Register" style="color:white;"><br/>
             <a href="login.jsp" id="forgot_pswd">Already have an account? Sign In</a><br/>
 			
 			<h5 style="color: red; text-align: center;">${ermsg}</h5>

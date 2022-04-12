@@ -79,6 +79,8 @@
 										<th>Topic Name</th>
 										<th>Test Correct Answer</th>
 										<th>Test Wrong Answer</th>
+										
+										<th>UnAttempted Questions</th>
 										<th>Test Marks</th>
 										<th>Date & Time</th>
 									</tr>
@@ -93,18 +95,21 @@
 								int resultCorrect = 0;
 								int resultWrong = 0;
 								int marks = 0;
-
+								int unattempt = 0;
+                             
+                                
 								ResultSet resultTimestamp = DatabaseConnection.getResultFromSqlQuery("select distinct subjectTopic, examdate from tblstudentresult where studentId='"+ session.getAttribute("id") + "'");
 								while (resultTimestamp.next()) {
 									countAnswer = 0;
 									resultCorrect = 0;
 									resultWrong = 0;
 									marks = 0;
-
+									unattempt = 0;
+									
 									ResultSet resultCount = DatabaseConnection.getResultFromSqlQuery("select count(question) from questions where subjectTopic='"+ resultTimestamp.getString("subjectTopic") + "'");
 									resultCount.next();
 									int count = resultCount.getInt(1);
-
+							
 									ResultSet resultSet = DatabaseConnection.getResultFromSqlQuery("select * from questions where subjectTopic='" + resultTimestamp.getString("subjectTopic") + "'");
 									while (resultSet.next()) {
 										id = resultSet.getInt(1);
@@ -114,12 +119,27 @@
 											hitAnswer = rs.getString("hitAnswer");
 											dateTime = rs.getString("examdate");
 										}
+										
+										
+										if (hitAnswer.equals("null"))
+										{
+											unattempt++;
+										}
+										else{
 										if (answer.equals(hitAnswer)) {
 											resultCorrect++;
 											marks = resultCorrect * 2;
-										} else {
+											
+										} 
+										 
+										
+										else {
 											resultWrong++;
+										
 										}
+										
+										}
+										 
 									}
 								%>
 								<tbody>
@@ -128,6 +148,8 @@
 										<td><%=resultTimestamp.getString("subjectTopic")%></td>
 										<td><%=resultCorrect%></td>
 										<td><%=resultWrong%></td>
+										
+										<td><%=unattempt%></td>
 										<td><%=marks%></td>
 										<td><%=dateTime%></td>
 									</tr>
