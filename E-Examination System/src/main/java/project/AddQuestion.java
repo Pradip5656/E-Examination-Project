@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.connection.DatabaseConnection;
 
@@ -30,7 +31,9 @@ public class AddQuestion extends HttpServlet {
 			Statement statement=connection.createStatement();
 			int addQuestion = statement.executeUpdate("insert into questions(question,option1,option2,option3,option4,answer,subjectTopic)values('"+question+"','"+option1+"','"+option2+"','"+option3+"','"+option4+"','"+correctAnswer+"','"+selectTopic+"')");
 			if(addQuestion>0){
+				 HttpSession hs = request.getSession();
 				response.sendRedirect("addQuestion.jsp");
+				 hs.setAttribute("ermsg", "You Have Question Added Successfully");
 			}else{
 				response.sendRedirect("addQuestion.jsp");
 			}

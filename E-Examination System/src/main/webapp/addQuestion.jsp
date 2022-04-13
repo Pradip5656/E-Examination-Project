@@ -97,6 +97,7 @@
 						</div>
 						<input type="submit" value="Add Question" class="btn btn-primary">
 						<input type="reset" value="Clear" class="btn btn-danger">
+						<h5 style="color: red; text-align: center;">${ermsg}</h5>
 					</form>
 				</div>
 			</div>
